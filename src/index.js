@@ -1,20 +1,24 @@
-function displayTemperature(response) {
+function displayTWeather(response) {
+  let humidityElement = document.querySelector("#current-humidity");
+  let windElement = document.querySelector("#current-wind");
+  let descriptionElement = document.querySelector("#current-description");
+  let iconElement = document.getElementById("current-weather-icon");
   let temperatureElement = document.querySelector("#current-temperature");
   let temperature = Math.round(response.data.temperature.current);
   let cityElement = document.querySelector("#current-city");
   cityElement.innerHTML = response.data.city;
   temperatureElement.innerHTML = temperature;
+  humidityElement.innerHTML = response.data.temperature.humidity;
+  windElement.innerHTML = response.data.wind.speed;
+  descriptionElement.innerHTML = response.data.condition.description;
+  iconElement.src = response.data.condition.icon_url;
 }
 
-function search(event) {
-  event.preventDefault();
-  let searchInputElement = document.querySelector("#search-input");
-  let city = searchInputElement.value;
-
+function search(city) {
   let apiKey = "b2a5adcct04b33178913oc335f405433";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
 
-  axios.get(apiUrl).then(displayTemperature);
+  axios.get(apiUrl).then(displayTWeather);
 }
 
 function formatDate(date) {
@@ -51,3 +55,10 @@ let currentDateELement = document.querySelector("#current-date");
 let currentDate = new Date();
 
 currentDateELement.innerHTML = formatDate(currentDate);
+
+let searchInputElement = document.querySelector("#search-input");
+let city = searchInputElement.value;
+
+search("Kyiv");
+
+
