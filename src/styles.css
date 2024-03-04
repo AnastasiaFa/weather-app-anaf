@@ -26,12 +26,13 @@ header {
 }
 
 .search-input {
+  position: fixed;
   background-color: #f5f5f582;
   border: none;
   color: #5b4b69;
   font-size: 16px;
   padding: 11px;
-  position: fixed;
+  
   border-radius: 0px 100px 100px 0px;
   margin-left: 10mm;
 }
